@@ -1,3 +1,5 @@
+//CREACION DE OBJETOS LITERALES
+
 const acciones = [
     {
         id: 1,
@@ -41,6 +43,9 @@ const acciones = [
         image: "./imagenes/visa.jpg"
     }*/
 ]
+
+
+//CREACION DE OBJETOS CONSTRUCTORES
 
 function Criptomonedas (id, ticker, name, price){
     this.id=id;
