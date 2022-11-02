@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Cinzel', serif;
+}
+
+.imageLogo {
+    width: 10px;
+}
+
+.fondoopaco {
+    background-color: rgba(0, 0, 0, 0.507);
+    z-index: 1;
+}
+
+.index__carousel {
+    color: black;
+z-index: -1
+;
+}
+
+.button__carousel{
+    z-index: 1;
+}
+
+.carousel-item {
+    height: 100vh;
+}
+
+.index__navbar {
+    position: absolute;
+    top: -100vh;
+    z-index: 100;
+}

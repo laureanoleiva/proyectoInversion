@@ -1,59 +1,95 @@
-//INGRESO DE USUARIO Y CONTRASEÑA
+/*//INGRESO DE USUARIO Y CONTRASEÑA
 let usuario = prompt("Ingrese su usuario");
 let contrasenia = prompt("Ingrese su contraseña");
 //ALERTA DE BIENVENIDA AL USUARIO
 alert("¡¡Bienvenido, " + usuario + " !!")
-//ELECCIÓN DE TIPO DE INVERSIÓN A REALIZAR
-let inversion = parseInt(prompt("Elija tipo de inversión a realizar:\n1-Acciones\n2-Criptomonedas\n3-Obligaciones Negociables\n4-Bonos\n5-Fondo Común de Inversión\n6-Salir del Sistema"))
-//FUNCIÓN QUE INDIQUE QUE DESEA COMPRAR CON CICLO - A FUTURO EXISTIRÁ UNA LISTA DE LA CUAL PODRA SELECCIONAR EL ACTIVO
+*/
 
+const miCartera = [];
 
-function comprar() {
-    let compraInversion;
-    let cantidadInversion;
+let tablaAcciones = document.getElementById("tablaAcciones");
 
-    do {
-        compraInversion = prompt("Indique que desea comprar (Escriba - fin - para salir)");
+let tabla = document.createElement("table");
+tabla.className = "table table-striped";
+tablaAcciones.append(tabla);
 
-        if (compraInversion != "fin") {
-            cantidadInversion = parseInt(prompt("Indique cantidad que desea comprar"));
-            alert("Usted comprará " + cantidadInversion + " de " + compraInversion);
-        }
-    } while (compraInversion != "fin");
+let thead = document.createElement("thead");
+
+thead.innerHTML += `
+<tr>
+    <th class="text-center">Imagen</th>
+    <th class="text-center">Ticker</th>
+    <th class="text-center">Nombre</th>
+    <th class="text-center">Precio</th>
+    <th class="text-center">Comprar</th>
+    <th class="text-center">Vender</th>
+</tr>
+`;
+
+tabla.append(thead);
+
+let tablaBody = document.createElement("tbody");
+
+for (const accionesEnTabla of acciones) {
+    tablaBody.innerHTML += `
+<tr>
+    <td class="imageLogo"><img src="./imagenes/${accionesEnTabla.image}" class="img-fluid" alt="..."></td>
+    <td class="text-center align-middle">${accionesEnTabla.ticker}</td>
+    <td class="text-center align-middle">${accionesEnTabla.name}</td>
+    <td class="text-center align-middle">${accionesEnTabla.price} USD</td>
+    <td class="text-center align-middle"><button id='btnCompraAcciones${accionesEnTabla.id}' class="btn btn-success">Comprar</button></td>
+    <td class="text-center align-middle"><button id='btnVentaAcciones${accionesEnTabla.id}' class="btn btn-danger">Vender</button></td>
+</tr>
+`;
 }
-//acciones.forEach((accion)=>alert(accion.id+" - "+accion.name));
-//alert("Elige entre las siguientes acciones:\n"+acciones.id+" - "+acciones.name+" - "+acciones.price)
-switch (inversion) {
-    case 1:
-        alert("Hay " + acciones.length+ " Acciones disponibles para comprar:");
-        for (const accion of acciones) {
-            alert(accion.id + " - " + accion.name + " - Precio: $" + accion.price)
-        };
-        comprar();
-        break;
-    case 2:
-        alert("Hay " + crypto.length + " Criptomonedas disponibles para comprar:");
-        for (const cryptomoneda of crypto) {
-            alert(cryptomoneda.id + " - " + cryptomoneda.name + " - Precio: $" + cryptomoneda.price)
-        };
-        comprar();
-        break;
-    case 3:
-        alert("Comprarás Obligaciones Negociables");
-        comprar();
-        break;
-    case 4:
-        alert("Comprarás Bonos");
-        comprar();
-        break;
-    case 5:
-        alert("Comprarás Fondo Común de Inversión");
-        comprar();
-        break;
-    case 6:
-        alert("Usted saldrá del Sistema");
-        comprar();
-        break;
-    default:
-        alert("Elección no válida")
+
+tabla.append(tablaBody);
+
+
+let cardCrypto = document.getElementById("cardsCrypto")
+
+for (const cryptosCards of crypto) {
+    cardCrypto.innerHTML += `
+    <div class="card " >
+        <img src="./imagenes/${cryptosCards.image}" class="card-img-top img-fluid mx-auto" style="width: 50%" alt="...">
+        <div class="card-body">
+            <h5 class="card-title text-center align-middle">${cryptosCards.ticker}</h5>
+            <p class="card-text text-center align-middle">${cryptosCards.name}</p>
+            <h5 class="card-title text-center align-middle">${cryptosCards.price} USD</h5>
+            <button id='btnCompraCrypto${cryptosCards.id}' class="btn btn-success text-center align-middle">Comprar</button>
+            <button id='btnVentaCrypto${cryptosCards.id}' class="btn btn-danger text-center align-middle">Vender</button>
+        </div>
+    </div>`
+}
+
+//EVENTOS
+
+acciones.forEach((accionesEnTabla) => {
+     document.getElementById(`btnCompraAcciones${accionesEnTabla.id}`).addEventListener("click", function () {
+        agregarALaCartera(accionesEnTabla);
+    });
+})
+
+crypto.forEach((cryptosCards) => {
+    document.getElementById(`btnCompraCrypto${cryptosCards.id}`).addEventListener("click", function () {
+        agregarALaCartera(cryptosCards);
+    });
+})
+
+
+function agregarALaCartera(activoPorAgregar) {
+    miCartera.push(activoPorAgregar);
+    document.getElementById("tablabodyCartera").innerHTML += `
+    <tr>
+    <td class="imageLogo"><img src="./imagenes/${activoPorAgregar.image}" class="img-fluid" alt="..."></td>
+        <td class="align-middle">${activoPorAgregar.ticker}</td>
+        <td class="align-middle">${activoPorAgregar.cantidad}</td>
+        <td class="align-middle">${activoPorAgregar.price} USD</td>
+        <td class="align-middle">${activoPorAgregar.price * activoPorAgregar.cantidad} USD</td>
+    </tr>
+    `
+
+    let dineroInvertido = miCartera.reduce((acumulador, activos) => acumulador + (activos.price * activos.cantidad), 0)
+
+    document.getElementById("totalInvertido").innerText = "Total Invertido =  " + dineroInvertido +" USD";
 }

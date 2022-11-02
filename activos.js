@@ -7,16 +7,18 @@ const acciones = [
         name: "Amazon",
         sector: "Tecnológico",
         price: 114,
-        image: "./imagenes/amazon.png"
+        image: "amazon.png",
+        cantidad: 1
     },
     {
-        
+
         id: 2,
         ticker: "APPL",
         name: "Apple",
         sector: "Tecnológico",
         price: 142,
-        image: "./imagenes/apple.png"
+        image: "apple.png",
+        cantidad: 1
     },
     {
         id: 3,
@@ -24,15 +26,17 @@ const acciones = [
         name: "Alphabet Inc.",
         sector: "Tecnológico",
         price: 100,
-        image: "./imagenes/google.png"
+        image: "google.png",
+        cantidad: 1
     },
-    /*{
+    {
         id: 4,
         ticker: "KO",
         name: "Coca-Cola Co.",
         sector: "Industrial",
         price: 56,
-        image: "./imagenes/cocacola.png"
+        image: "cocacola.png",
+        cantidad: 1
     },
     {
         id: 5,
@@ -40,21 +44,26 @@ const acciones = [
         name: "Visa Inc.",
         sector: "Tecnológico",
         price: 185,
-        image: "./imagenes/visa.jpg"
-    }*/
+        image: "visa.jpg",
+        cantidad: 1
+    }
 ]
 
 
 //CREACION DE OBJETOS CONSTRUCTORES
 
-function Criptomonedas (id, ticker, name, price){
-    this.id=id;
-    this.ticker=ticker;
-    this.name=name;
-    this.price=price;
+function Criptomonedas(image, id, ticker, name, price, cantidad) {
+    this.image = image;
+    this.id = id;
+    this.ticker = ticker;
+    this.name = name;
+    this.price = price;
+    this.cantidad = cantidad
 }
 
 const crypto = [
-    crypto1 = new Criptomonedas(1,"BTC","Bitcoin",20000),
-    crypto2 = new Criptomonedas(2,"ETH","Ethereum",1300)
+    crypto01 = new Criptomonedas("btc.png", 1, "BTC", "Bitcoin", 20000, 1),
+    crypto02 = new Criptomonedas("ethereum.png", 2, "ETH", "Ethereum", 1300, 1),
+    crypto03 = new Criptomonedas("solana.png", 3, "SOL", "Solana", 145, 1),
+    crypto04 = new Criptomonedas("bnb.png", 4, "BNB", "Binance Coin", 405, 1)
 ]
