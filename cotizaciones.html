@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- CSS only -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="cotizaciones.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <title>Cotizaciones</title>
@@ -17,7 +17,7 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="../index.html">HOME</a>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -26,37 +26,58 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="./cotizaciones.html">COTIZACIONES</a>
+                        <div id="cotizacionDolar"></div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled">Disabled</a>
+                        <div id="horaActual"></div>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <div class="input-group flex-nowrap text-center align-middle">
+                        <p id="nombreDeUsuario" class="text-center align-middle"></p>
+                    </div>
+                    <button id="buttonSesion" class="btn btn-outline-success" type="submit"
+                        onclick="cerrarSesion()">Cerrar Sesión</button>
                 </form>
             </div>
         </div>
     </nav>
 
+
+    <!-- BOTON QUE MUESTRA LA CARTERA DE INVERSIÓN -->
+    <div><button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+            aria-controls="offcanvasRight">Mostrar Mi Cartera de Inversión</button>
+
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasRightLabel">Offcanvas right</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <h1 class="text-center">Mi Cartera</h1>
+                <div id="miCartera">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Ticker</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                                <th>Total</th>
+                                <th>Vender</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablabodyCartera">
+                            <!-- CARTERA DE ACTIVOS -->
+                        </tbody>
+                    </table>
+                    <h3 id="totalInvertido"></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
 
     <h1 class="text-center">Compra y Venta de CEDEARS</h1>
 
@@ -70,29 +91,13 @@
         <!-- CARDS CRYPTO -->
     </div>
 
-    <h1 class="text-center">Mi Cartera</h1>
-    <div id="miCartera">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Imagen</th>
-                    <th>Ticker</th>
-                    <th>Cantidad</th>
-                    <th>Precio</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody id="tablabodyCartera">
-                <!-- CARTERA DE ACTIVOS -->
-            </tbody>
-        </table>
-        <h3 id="totalInvertido"></h3>
-    </div>
 
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="activos.js"></script>
     <script src="java.js"></script>
 </body>
